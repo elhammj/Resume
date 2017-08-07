@@ -131,7 +131,6 @@ a {
 #header {
   background-color: #484848;
 }
-
 .flex-box {
   display: -webkit-flex;
   display: flex;
@@ -154,6 +153,9 @@ a {
 
 ul {
   list-style-type: none;
+}
+li{
+  list-style-type: none; 
 }
 
 .biopic {
