@@ -25,43 +25,43 @@ var bio = {
 	"welcomeMessage": " Welcome To My Resume !",
 		"skills": ["Attention to Detail","Fast Working", "Leadership", "Programming Languages"],
 	"biopic": "images/personalPhoto.jpg;",
-	display: function(){
-		//Header (Name and Role)
-		var formattedName = HTMLheaderName.replace("%data%",bio.name);
-		var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
-		$("#header").prepend(formattedRole);
-		$("#header").prepend(formattedName);
-
-		//Contact Info
-		var formattedContactPhone = HTMLmobile.replace("%data%", bio.contacts.mobile);
-		var formattedContactEmail = HTMLemail.replace("%data%", bio.contacts.email);
-		var formattedContactGit = HTMLgithub.replace("%data%", bio.contacts.github);
-		var formattedContactWebsite = HTMLblog.replace("%data%", bio.contacts.website);
-		var formattedContactLocation = HTMLlocation.replace("%data%", bio.contacts.location);
-
-		var allContactInfo = formattedContactPhone + formattedContactEmail + formattedContactGit + formattedContactWebsite + formattedContactLocation;
-		$("#topContacts").append(allContactInfo);
-		$("#footerContacts").append(allContactInfo);
-
-		//Personal Image
-		var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
-		$("#header").append(formattedPic);
-
-		//Welcome Msg
-		var formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-		$("#header").append(formattedMsg);
-
-		//Skills
-		$("#header").append(HTMLskillsStart);
-		for (var i=0; i< bio.skills.length;i++){
-			var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
-			$("#header").append(formattedSkill);
-		}
-	}
-
 };
-//Call the function to display the bio
-bio.display();
+//display function encapsluated
+bio.display =  function(){
+	//Header (Name and Role)
+	var formattedName = HTMLheaderName.replace("%data%",bio.name);
+	var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
+	$("#header").prepend(formattedRole);
+	$("#header").prepend(formattedName);
+
+	//Contact Info
+	var formattedContactPhone = HTMLmobile.replace("%data%", bio.contacts.mobile);
+	var formattedContactEmail = HTMLemail.replace("%data%", bio.contacts.email);
+	var formattedContactGit = HTMLgithub.replace("%data%", bio.contacts.github);
+	var formattedContactWebsite = HTMLcontactGeneric.replace("%contact%", "website").replace("%data%", bio.contacts.website);
+	var formattedContactLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+
+	var allContactInfo = formattedContactPhone + formattedContactEmail + formattedContactGit + formattedContactWebsite + formattedContactLocation;
+	$("#topContacts").append(allContactInfo);
+	$("#footerContacts").append(allContactInfo);
+
+	//Personal Image
+	var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
+	$("#header").append(formattedPic);
+
+	//Welcome Msg
+	var formattedMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	$("#header").append(formattedMsg);
+
+	//Skills
+	$("#header").append(HTMLskillsStart);
+	for (var i=0; i< bio.skills.length;i++){
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
+		$("#header").append(formattedSkill);
+	}
+}
+//Append the info to bio section 
+$("#header").append(bio.display());
 
 //Function to captilaize last name and make it as the international format 
 function inName(name){
@@ -74,6 +74,10 @@ function inName(name){
 }
 //Append the international name format button
 $("#main").append(internationalizeButton); 
+//Move to the top of the page when the button is clicked, so the vistor can recognize the change
+$("#inter-button").on("click", function() {
+    $("body").scrollTop(0);
+});
 //Append Map
 $("#mapDiv").append(googleMap);
 // -------------------- END HEADER PART -----------------------
@@ -110,27 +114,27 @@ var work = {
 		"location": "Khobar, Saudi Arabia",
 		"dates": "Oct 2010 - Oct 2013",
 		"descreption": "Documented financial transactions by entering account information. Summarized current financial status by collecting information; preparing balance sheet, profit and loss statement, and other reports. Prepared payments by verifying documentation, and requesting disbursements. Managed employee issues and relation. Built a small financial system to manage payroll, sales and employee attendance." 
-	}],
-	display: function(){
-		//Adding the work experince to the page
-		for (var i=0;i<work.jobs.length; i++){
-			//Replacing the data
-			var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
-			var formatedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
-			var formatedDate = HTMLworkDates.replace("%data%", work.jobs[i].dates);
-			var formatedCity = HTMLworkLocation.replace("%data%", work.jobs[i].location);
-			var formatedDec = HTMLworkDescription.replace("%data%", work.jobs[i].descreption);
-			var allWorkInfo = formattedWorkEmployer + formatedWorkTitle + formatedDate + formatedCity + formatedDec;
-			//Appending Data
-			$("#workExperience").append(HTMLworkStart);
-			$(".work-entry:last").append(allWorkInfo);
-		}
-	}
+	}]
 };
-//To display work
-work.display();
+//display function encapsluated
+work.display = (function(){
+	for (var i=0;i<work.jobs.length; i++){
+	//Replacing the data
+	var formattedWorkEmployer = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+	var formatedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+	var formatedDate = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+	var formatedCity = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+	var formatedDec = HTMLworkDescription.replace("%data%", work.jobs[i].descreption);
+	var allWorkInfo = formattedWorkEmployer + formatedWorkTitle + formatedDate + formatedCity + formatedDec;
+	//Appending Data
+	$("#workExperience").append(HTMLworkStart);
+	$(".work-entry:last").append(allWorkInfo);
+	}
+});
+//Append the info to work section 
+$("#workExperience").append(work.display());
 //Function to return all the work locations
-function locationaizer(work){
+function locationizer(work){
 	var arr1 = [];
     for (var i=0; i<work.jobs.length;i++){
 
@@ -138,8 +142,7 @@ function locationaizer(work){
     }
 	return arr1;
 }
-
-console.log(locationaizer(work));
+console.log(locationizer(work));
 
 // -------------------- END WORK PART -----------------------
 
@@ -152,35 +155,36 @@ var projects = {
 		"title" : "Figi-Watcher",
 		"dates": "August 2012 - May 2013",
 		"descreption": "It is a windows-based application. The main goal of our smart software is to control and track products in a feasible way no matter how many products the user wants to store in it. The application is an embedded system where the software and hardware works together to accomplish its function by implementing some activitie.",
-		"images": ["images/FigiWatcher.jpg"]
+		"images": ["images/FigiWatcher.jpg", "images/FigiWatcher2.jpg"]
 	},
 		{"title" : "TogetherFit",
 		"dates": "August 2016 - Dec 2016",
 		"descreption": "It is a workout android application. This application connects people to others with similar goals and find trainers to help meet their goals. This application has two different parts: one for the students and the other for the trainers. In addition, It has a user registeration and log in parts and each user has its profile.",
-		"images": ["images/TogetherFit.png"]
-	}],
-	display: function(){
-		//Adding Project Data
-		for (var i=0;i<projects.projects.length;i++)
+		"images": ["images/TogetherFit.png", "images/TogetherFit2.png"]
+	}
+]};
+//display function encapsluated
+projects.display = function(){
+	//Adding Project Data
+	for (var i=0;i<projects.projects.length;i++)
+	{
+		var formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[i].title);
+		var formattedProjectDate = HTMLprojectDates.replace("%data%",projects.projects[i].dates);
+		var formattedProjectDes = HTMLprojectDescription.replace("%data%",projects.projects[i].descreption);
+		var allProjectInfo = formattedProjectTitle + formattedProjectDate + formattedProjectDes;
+		$("#projects").append(HTMLprojectStart);
+		$(".project-entry:last").append(allProjectInfo);
+		if (projects.projects[i].images.length>0)
 		{
-			var formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[i].title);
-			var formattedProjectDate = HTMLprojectDates.replace("%data%",projects.projects[i].dates);
-			var formattedProjectDes = HTMLprojectDescription.replace("%data%",projects.projects[i].descreption);
-			var allProjectInfo = formattedProjectTitle + formattedProjectDate + formattedProjectDes;
-			$("#projects").append(HTMLprojectStart);
-			$(".project-entry:last").append(allProjectInfo);
-			if (projects.projects[i].images.length>0)
-			{
-				for (var j=0; j<projects.projects[i].images.length;j++){
-					var formattedProjectImg = HTMLprojectImage.replace("%data%",projects.projects[i].images);
-					$(".project-entry:last").append(formattedProjectImg);
-				}
+			for (var j=0; j<projects.projects[i].images.length;j++){
+				var formattedProjectImg = HTMLprojectImage.replace("%data%",projects.projects[i].images[j]);
+				$(".project-entry:last").append(formattedProjectImg);
 			}
 		}
 	}
 };
-//To display the projects
-projects.display();
+//Append the info to project section 
+$("#projects").append(projects.display());
 
 
 // -------------------- END PROJECT PART -----------------------
@@ -195,7 +199,8 @@ var education = {
 		"location": "Philadelphia, United States",
 		"degree": "Master's of Computer Science",
 		"majors": "Software Engineering",
-		"dates": "Jan 2015 - Dec 2016"
+		"dates": "Jan 2015 - Dec 2016",
+		"url": "https://www.sju.edu"
 
 	},
 	{
@@ -203,47 +208,57 @@ var education = {
 		"location": "Dammam, Saudi Arabia",
 		"degree": "Bachelor of Science",
 		"majors": "Information Technology and Computing",
-		"dates": "Sep 2008 - Jul 2013"
+		"dates": "Sep 2008 - Jul 2013",
+		"url": "http://web.arabou.edu.sa/en/"
 
 	}],
 	"course":[{
 		"title": "Nanodegree Front-End Web Design",
 		"school": "Udacity",
 		"dates": "Jul 2017 - Oct 2017",
-		"URL": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
-	}],
-	display: function(){
-		//Adding the education to the page
-		for (var i=0; i<education.schools.length;i++){
-			//Replacing the data
-			var formattedSchoolName = HTMLschoolName.replace("%data%",education.schools[i].name);
-			var formattedSchoolDegree = HTMLschoolDegree.replace("%data%",education.schools[i].degree);
-			var formattedSchoolDates = HTMLschoolDates.replace("%data%",education.schools[i].dates);
-			var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[i].location);
-			var formattedSchoolMajor = HTMLschoolMajor.replace("%data%",education.schools[i].majors);
-			var allEducationInfo = formattedSchoolName + formattedSchoolDegree + formattedSchoolDates + formattedSchoolLocation + formattedSchoolMajor;
-			$("#education").append(HTMLschoolStart);
-			//Appending Data
-			$(".education-entry:last").append(allEducationInfo);
-		}
-		//Adding the course to the page
-		$("#education").append(HTMLonlineClasses);
-		for (var i=0;i<education.course.length;i++){
-			//Replacing the data
-			var formattedCourseTitle = HTMLonlineTitle.replace("%data%",education.course[i].title);
-			var formattedCourseSchool = HTMLonlineSchool.replace("%data%",education.course[i].school);
-			var formattedCourseDates = HTMLonlineDates.replace("%data%",education.course[i].dates);
-			var formattedCourseURL = HTMLonlineURL.replace("%data%",education.course[i].URL);
-			var allCourseInfo = formattedCourseTitle + formattedCourseSchool + formattedCourseDates + formattedCourseURL;
-			//Appending Data
-			$("#education").append(HTMLschoolStart);
-			$(".education-entry:last").append(allCourseInfo);
-		}
+		"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
 	}
-};
-//To display the education and online courses
-education.display();
+]};
+//display function encapsluated
+education.display = function(){
+	//Adding the education to the page
+	for (var i=0; i<education.schools.length;i++){
+		//Replacing the data
+		var formattedSchoolName = HTMLschoolName.replace("%data%",education.schools[i].name);
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%",education.schools[i].degree);
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%",education.schools[i].dates);
+		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[i].location);
+		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%",education.schools[i].majors);
+		var formatedSchoolURL = HTMLschoolURL.replace("#",education.schools[i].url).replace("%data%",education.schools[i].url);
+		var allEducationInfo = formattedSchoolName + formattedSchoolDegree + formattedSchoolDates + formattedSchoolLocation + formattedSchoolMajor + formatedSchoolURL;
+		$("#education").append(HTMLschoolStart);
+		//Appending Data
+		$(".education-entry:last").append(allEducationInfo);
+	}
+	//Adding the course to the page
+	$("#education").append(HTMLonlineClasses);
+	for (var i=0;i<education.course.length;i++){
+		//Replacing the data
+		var formattedCourseTitle = HTMLonlineTitle.replace("%data%",education.course[i].title);
+		var formattedCourseSchool = HTMLonlineSchool.replace("%data%",education.course[i].school);
+		var formattedCourseDates = HTMLonlineDates.replace("%data%",education.course[i].dates);
+		var formattedCourseURL = HTMLonlineURL.replace("#",education.course[i].url).replace("%data%",education.course[i].url);
+		var allCourseInfo = formattedCourseTitle + formattedCourseSchool + formattedCourseDates + formattedCourseURL;
+		//Appending Data
+		$("#education").append(HTMLschoolStart);
+		$(".education-entry:last").append(allCourseInfo);
+	}
+}
+//Append the info to work section 
+$("#projects").append(education.display());
 // -------------------- END EDUCATION PART -----------------------
 
-
-
+//Navigation: adding and removing the "responsive" class to nav when the user clicks. This is done by getting the clssName
+function navFunction() {
+    var x = document.getElementById("topNav");
+    if (x.className === "nav") {
+        x.className += " responsive";
+    } else {
+        x.className = "nav";
+    }
+}

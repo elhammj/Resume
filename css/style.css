@@ -167,6 +167,7 @@ li{
 
 img {
   padding: 10px;
+  max-width: 30%;
 }
 
 span {
@@ -175,6 +176,48 @@ span {
 
 #lets-connect {
   text-align: center;
+}
+
+#inter-button{
+  background-color: #fff; 
+  width: 100%;
+  padding: 10px;
+  color: #000;
+  font-weight: bold;
+  font-size: 2vw; 
+  font-family: "Roboto", sans-serif;
+}
+
+/* Navigation */
+/* Style the navigation */
+.nav {
+    background-color: #f5a623;
+    color: #484848;
+    overflow: hidden;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-left: 30px;
+}
+
+/* Style the links */
+.nav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color when its hover*/
+.nav a:hover {
+    color: #fff;
+    background-color: #484848;
+}
+
+/* when the screen it is small, hide */
+.nav .whenClick {
+    display: none;
 }
 
 /* Media queries to handle various device widths */
@@ -201,8 +244,34 @@ span {
   .welcome-message {
     display: none;
   }
+  #image-project{
+    display: block;
+    margin: auto;
+    min-width: 60%;
+  }
+  .nav a:not(:first-child) {display: none;}
+  .nav a.whenClick {
+    float: right;
+    display: block;
+  }
+  .nav.responsive {
+    position: relative;
+  }
+  .nav.responsive a.whenClick {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .nav.responsive a {
+    float: none;
+    display: block;
+  }
 }
 
+#workExperience, #education, #projects, #mapDiv{
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
 #map {
   display: block;
   height: 100%;

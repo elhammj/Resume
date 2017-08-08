@@ -15,25 +15,23 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 <scripts> for JavaScript files to build interactions.
 -->
 <html>
-<head>
-  <!-- This tells the browser how to read the document. -->
-  <meta charset="utf-8">
+  <head>
+    <!-- This tells the browser how to read the document. -->
+    <meta charset="utf-8">
 
-  <!-- Tells the browser what the title of this page should be. -->
-  <title>Resume</title>
+    <!-- Tells the browser what the title of this page should be. -->
+    <title>Elham's Resume</title>
 
-  <!-- Load the page styles. -->
-  <link href="css/style.css" rel="stylesheet">
+    <!-- Load the page styles. -->
+    <link href="css/style.css" rel="stylesheet">
 
+    <!--
+    Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!
+    -->
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDMzjasQxgXrOysjMMRwTBzMCfYMl9Tbqc"></script>
 
-
-  <!--
-  Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!
-  -->
-  <script src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDMzjasQxgXrOysjMMRwTBzMCfYMl9Tbqc"></script>
-
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-</head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
 <body>
   <div id="main">
     <!--
@@ -44,6 +42,14 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
     -->
     <div id="header" class="center-content clear-fix">
       <ul id="topContacts" class="flex-box"></ul>
+    </div>
+    <div class="nav" id="topNav">
+      <a href="#workExperience">WORK</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#education">EDUCATION</a>
+      <a href="#mapDiv">MAP</a>
+      <!--To add the three line in nav small screen-->
+      <a href="javascript:void(0);" class="whenClick" onclick="navFunction()">&#9776;</a> 
     </div>
     <div style="clear: both;"></div>
     <div id="workExperience" class="gray">

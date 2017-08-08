@@ -1,4 +1,5 @@
-# Project Details
+# Project Details 
+## This project is a Udacity Front - End Web Design Course to show Java Script - HTML and CSS skills.
 ## How do I complete this project?
 Review the Online Resume [Project Rubric](https://review.udacity.com/?_ga=1.189245867.12280332.1465333852#!/projects/2962818615/rubric).
 
