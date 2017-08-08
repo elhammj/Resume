@@ -59,7 +59,7 @@ bio.display =  function(){
 		var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
 		$("#header").append(formattedSkill);
 	}
-}
+};
 //Append the info to bio section 
 $("#header").append(bio.display());
 
@@ -237,18 +237,18 @@ education.display = function(){
 	}
 	//Adding the course to the page
 	$("#education").append(HTMLonlineClasses);
-	for (var i=0;i<education.course.length;i++){
+	for (var j=0;j<education.course.length;j++){
 		//Replacing the data
-		var formattedCourseTitle = HTMLonlineTitle.replace("%data%",education.course[i].title);
-		var formattedCourseSchool = HTMLonlineSchool.replace("%data%",education.course[i].school);
-		var formattedCourseDates = HTMLonlineDates.replace("%data%",education.course[i].dates);
-		var formattedCourseURL = HTMLonlineURL.replace("#",education.course[i].url).replace("%data%",education.course[i].url);
+		var formattedCourseTitle = HTMLonlineTitle.replace("%data%",education.course[j].title);
+		var formattedCourseSchool = HTMLonlineSchool.replace("%data%",education.course[j].school);
+		var formattedCourseDates = HTMLonlineDates.replace("%data%",education.course[j].dates);
+		var formattedCourseURL = HTMLonlineURL.replace("#",education.course[j].url).replace("%data%",education.course[j].url);
 		var allCourseInfo = formattedCourseTitle + formattedCourseSchool + formattedCourseDates + formattedCourseURL;
 		//Appending Data
 		$("#education").append(HTMLschoolStart);
 		$(".education-entry:last").append(allCourseInfo);
 	}
-}
+};
 //Append the info to work section 
 $("#projects").append(education.display());
 // -------------------- END EDUCATION PART -----------------------
