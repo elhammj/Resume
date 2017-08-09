@@ -42,8 +42,7 @@ bio.display =  function(){
 	var formattedContactLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 
 	var allContactInfo = formattedContactPhone + formattedContactEmail + formattedContactGit + formattedContactWebsite + formattedContactLocation;
-	$("#topContacts").append(allContactInfo);
-	$("#footerContacts").append(allContactInfo);
+	$("#topContacts , #footerContacts").append(allContactInfo);
 
 	//Personal Image
 	var formattedPic = HTMLbioPic.replace("%data%", bio.biopic);
@@ -92,28 +91,28 @@ var work = {
 		"title": "Gradute Teaching Asisstant",
 		"location": "Philadelphia, United States",
 		"dates": "Jan 2016 - Dec 2016",
-		"descreption": " Attended classes for the course(s) assigned, assisted in closed Lab, graded assignments and understood and studied course materials. Tutored, supervised open and close labs and reported on students progress. "
+		"description": " Attended classes for the course(s) assigned, assisted in closed Lab, graded assignments and understood and studied course materials. Tutored, supervised open and close labs and reported on students progress. "
 	},
 	{
 		"employer": "Saudi Aramco",
 		"title": "Software Develop Intern",
 		"location": "Dhahran, Saudi Arabia",
 		"dates": "Jun 2015 - Jul 2015",
-		"descreption": "Developed a complete web application (GPS Navigation Map Online Request) and Windows application (GPS Navigation Map Tracking System) for Geospatial Information Technology Unit in Geomatics Service Division. Collaborated with coworkers to learn procedures and divided work evenly."
+		"description": "Developed a complete web application (GPS Navigation Map Online Request) and Windows application (GPS Navigation Map Tracking System) for Geospatial Information Technology Unit in Geomatics Service Division. Collaborated with coworkers to learn procedures and divided work evenly."
 	},
 	{
 		"employer": "Design Plus",
 		"title": "IT Specialist - Project",
 		"location": "Khobar, Saudi Arabia",
 		"dates": "Nov 2013 - Feb 2014",
-		"descreption": "Managed Live streaming of the (Global Knowledge Society Forum) through the internet. Created the E-Ticket and temporary website of the (Global Knowledge Society Forum).Designed and Developed (Tahado) website."
+		"description": "Managed Live streaming of the (Global Knowledge Society Forum) through the internet. Created the E-Ticket and temporary website of the (Global Knowledge Society Forum).Designed and Developed (Tahado) website."
 	},
 	{
 		"employer": "Mohammed Al Braidy Company",
 		"title": "Accountant",
 		"location": "Khobar, Saudi Arabia",
 		"dates": "Oct 2010 - Oct 2013",
-		"descreption": "Documented financial transactions by entering account information. Summarized current financial status by collecting information; preparing balance sheet, profit and loss statement, and other reports. Prepared payments by verifying documentation, and requesting disbursements. Managed employee issues and relation. Built a small financial system to manage payroll, sales and employee attendance." 
+		"description": "Documented financial transactions by entering account information. Summarized current financial status by collecting information; preparing balance sheet, profit and loss statement, and other reports. Prepared payments by verifying documentation, and requesting disbursements. Managed employee issues and relation. Built a small financial system to manage payroll, sales and employee attendance." 
 	}]
 };
 //display function encapsluated
@@ -124,7 +123,7 @@ work.display = (function(){
 	var formatedWorkTitle = HTMLworkTitle.replace("%data%", work.jobs[i].title);
 	var formatedDate = HTMLworkDates.replace("%data%", work.jobs[i].dates);
 	var formatedCity = HTMLworkLocation.replace("%data%", work.jobs[i].location);
-	var formatedDec = HTMLworkDescription.replace("%data%", work.jobs[i].descreption);
+	var formatedDec = HTMLworkDescription.replace("%data%", work.jobs[i].description);
 	var allWorkInfo = formattedWorkEmployer + formatedWorkTitle + formatedDate + formatedCity + formatedDec;
 	//Appending Data
 	$("#workExperience").append(HTMLworkStart);
@@ -154,12 +153,12 @@ var projects = {
 	"projects": [{
 		"title" : "Figi-Watcher",
 		"dates": "August 2012 - May 2013",
-		"descreption": "It is a windows-based application. The main goal of our smart software is to control and track products in a feasible way no matter how many products the user wants to store in it. The application is an embedded system where the software and hardware works together to accomplish its function by implementing some activitie.",
+		"description": "It is a windows-based application. The main goal of our smart software is to control and track products in a feasible way no matter how many products the user wants to store in it. The application is an embedded system where the software and hardware works together to accomplish its function by implementing some activitie.",
 		"images": ["images/FigiWatcher.jpg", "images/FigiWatcher2.jpg"]
 	},
 		{"title" : "TogetherFit",
 		"dates": "August 2016 - Dec 2016",
-		"descreption": "It is a workout android application. This application connects people to others with similar goals and find trainers to help meet their goals. This application has two different parts: one for the students and the other for the trainers. In addition, It has a user registeration and log in parts and each user has its profile.",
+		"description": "It is a workout android application. This application connects people to others with similar goals and find trainers to help meet their goals. This application has two different parts: one for the students and the other for the trainers. In addition, It has a user registeration and log in parts and each user has its profile.",
 		"images": ["images/TogetherFit.png", "images/TogetherFit2.png"]
 	}
 ]};
@@ -170,7 +169,7 @@ projects.display = function(){
 	{
 		var formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[i].title);
 		var formattedProjectDate = HTMLprojectDates.replace("%data%",projects.projects[i].dates);
-		var formattedProjectDes = HTMLprojectDescription.replace("%data%",projects.projects[i].descreption);
+		var formattedProjectDes = HTMLprojectDescription.replace("%data%",projects.projects[i].description);
 		var allProjectInfo = formattedProjectTitle + formattedProjectDate + formattedProjectDes;
 		$("#projects").append(HTMLprojectStart);
 		$(".project-entry:last").append(allProjectInfo);
@@ -197,8 +196,8 @@ var education = {
 	"schools":[{
 		"name": "Saint Joseph's University",
 		"location": "Philadelphia, United States",
-		"degree": "Master's of Computer Science",
-		"majors": "Software Engineering",
+		"degree": "Master's of Science",
+		"majors": ["Computer Science" , "Software Engineering"],
 		"dates": "Jan 2015 - Dec 2016",
 		"url": "https://www.sju.edu"
 
@@ -207,12 +206,12 @@ var education = {
 		"name": "Arab Open University",
 		"location": "Dammam, Saudi Arabia",
 		"degree": "Bachelor of Science",
-		"majors": "Information Technology and Computing",
+		"majors": ["Information Technology and Computing"],
 		"dates": "Sep 2008 - Jul 2013",
 		"url": "http://web.arabou.edu.sa/en/"
 
 	}],
-	"course":[{
+	"onlineCourses":[{
 		"title": "Nanodegree Front-End Web Design",
 		"school": "Udacity",
 		"dates": "Jul 2017 - Oct 2017",
@@ -228,8 +227,15 @@ education.display = function(){
 		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%",education.schools[i].degree);
 		var formattedSchoolDates = HTMLschoolDates.replace("%data%",education.schools[i].dates);
 		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[i].location);
-		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%",education.schools[i].majors);
+		var formattedSchoolMajor;
 		var formatedSchoolURL = HTMLschoolURL.replace("#",education.schools[i].url).replace("%data%",education.schools[i].url);
+		var allMajors = "";
+		for( var m=0; m<education.schools[i].majors.length; m++){
+			allMajors +=  education.schools[i].majors[m];
+			if ((m+1) !== education.schools[i].majors.length)
+				allMajors += ", ";
+		}
+		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%",allMajors);
 		var allEducationInfo = formattedSchoolName + formattedSchoolDegree + formattedSchoolDates + formattedSchoolLocation + formattedSchoolMajor + formatedSchoolURL;
 		$("#education").append(HTMLschoolStart);
 		//Appending Data
@@ -237,12 +243,12 @@ education.display = function(){
 	}
 	//Adding the course to the page
 	$("#education").append(HTMLonlineClasses);
-	for (var j=0;j<education.course.length;j++){
+	for (var j=0;j<education.onlineCourses.length;j++){
 		//Replacing the data
-		var formattedCourseTitle = HTMLonlineTitle.replace("%data%",education.course[j].title);
-		var formattedCourseSchool = HTMLonlineSchool.replace("%data%",education.course[j].school);
-		var formattedCourseDates = HTMLonlineDates.replace("%data%",education.course[j].dates);
-		var formattedCourseURL = HTMLonlineURL.replace("#",education.course[j].url).replace("%data%",education.course[j].url);
+		var formattedCourseTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[j].title);
+		var formattedCourseSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[j].school);
+		var formattedCourseDates = HTMLonlineDates.replace("%data%",education.onlineCourses[j].dates);
+		var formattedCourseURL = HTMLonlineURL.replace("#",education.onlineCourses[j].url).replace("%data%",education.onlineCourses[j].url);
 		var allCourseInfo = formattedCourseTitle + formattedCourseSchool + formattedCourseDates + formattedCourseURL;
 		//Appending Data
 		$("#education").append(HTMLschoolStart);
