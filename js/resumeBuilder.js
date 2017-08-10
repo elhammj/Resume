@@ -60,7 +60,7 @@ bio.display =  function(){
 	}
 };
 //Append the info to bio section 
-$("#header").append(bio.display());
+bio.display();
 
 //Function to captilaize last name and make it as the international format 
 function inName(name){
@@ -131,7 +131,7 @@ work.display = (function(){
 	}
 });
 //Append the info to work section 
-$("#workExperience").append(work.display());
+work.display();
 //Function to return all the work locations
 function locationizer(work){
 	var arr1 = [];
@@ -183,8 +183,7 @@ projects.display = function(){
 	}
 };
 //Append the info to project section 
-$("#projects").append(projects.display());
-
+projects.display();
 
 // -------------------- END PROJECT PART -----------------------
 
@@ -255,7 +254,7 @@ education.display = function(){
 	}
 };
 //Append the info to work section 
-$("#projects").append(education.display());
+education.display();
 // -------------------- END EDUCATION PART -----------------------
 
 //Navigation: adding and removing the "responsive" class to nav when the user clicks. This is done by getting the clssName
