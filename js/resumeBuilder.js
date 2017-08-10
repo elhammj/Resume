@@ -24,7 +24,7 @@ var bio = {
 	 },
 	"welcomeMessage": " Welcome To My Resume !",
 		"skills": ["Attention to Detail","Fast Working", "Leadership", "Programming Languages"],
-	"biopic": "images/personalPhoto.jpg;",
+	"biopic": "images/personalPhoto.jpg",
 };
 //display function encapsluated
 bio.display =  function(){
