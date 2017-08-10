@@ -227,7 +227,6 @@ education.display = function(){
 		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%",education.schools[i].degree);
 		var formattedSchoolDates = HTMLschoolDates.replace("%data%",education.schools[i].dates);
 		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[i].location);
-		var formattedSchoolMajor;
 		var formatedSchoolURL = HTMLschoolURL.replace("#",education.schools[i].url).replace("%data%",education.schools[i].url);
 		var allMajors = "";
 		for( var m=0; m<education.schools[i].majors.length; m++){
